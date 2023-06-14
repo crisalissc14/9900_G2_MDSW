@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NEO FAST AND GRILL INVENTARIO</title>
+  <style>
+    body {
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    form {
+      display: inline-block;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 200px;
+      padding: 5px;
+    }
+
+    input[type="button"] {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    function ingresar() {
+      var usuario = document.getElementById("usuario").value;
+      var contraseña = document.getElementById("contraseña").value;
+
+      // Aquí puedes realizar la validación de usuario y contraseña recién creados
+      // Por ejemplo, puedes comparar los valores ingresados con los registros almacenados
+
+      // Si la validación es exitosa, redirecciona a la página en blanco
+      window.location.href = "pagina.html";
+    }
+  </script>
+</head>
+<body>
+  <h1>NEO FAST AND GRILL </h1>
+  <h2>Ingresar datos de usuario</h2>
+  <form>
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario" required><br><br>
+
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+    <input type="button" value="Ingresar" onclick="ingresar()">
+  </form>
+</body>
+</html>

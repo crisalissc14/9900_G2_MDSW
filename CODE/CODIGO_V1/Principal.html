@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NEO FAST AND GRILL INVENTARIO</title>
+  <style>
+    body {
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    form {
+      display: inline-block;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 200px;
+      padding: 5px;
+    }
+
+    input[type="button"] {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+  <script>
+    function validarFormulario() {
+      var usuario = document.getElementById("usuario").value;
+      var contraseña = document.getElementById("contraseña").value;
+
+      // Aquí puedes realizar la validación de usuario y contraseña como desees
+      // Por ejemplo, puedes comparar los valores ingresados con valores predefinidos
+      if (usuario === "administrador" && contraseña === "admin12345") {
+        // Si la validación es exitosa, redirecciona a la página en blanco
+        window.location.href = "pagina.html";
+      } else {
+        // Si la validación falla, muestra un mensaje de error
+        alert("Usuario o contraseña incorrectos. Inténtalo nuevamente.");
+        window.location.href = "pagina2.html";
+      }
+    }
+  </script>
+</head>
+<center><h1></h1></center>
+<center> <img src=" https://logos.flamingtext.com/Name-Logos/Neo-design-stripes-name.gif" alt=""></center>
+<body bgcolor="#FE2E2E  "></body>
+<body>
+  <h1>NEO FAST AND GRILL</h1>
+  <h2>Inicio de Sesion Usuario Inventario</h2>
+  <form>
+<br>
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario" required><br><br>
+
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+    <input type="button" value="Ingresar" onclick="validarFormulario()">
+    <label for="tipo_usuario">Tipo de Usuario:</label>
+<select id="tipo_usuario" name="tipo_usuario">
+    <option value="Administrador">Administrador</option>
+    <option value="Jefe de cocina">Jefe de cocina</option>
+    <option value="Asistente">Asistente</option>
+    <option value="Asistente contable">Asistente contable</option>
+</select>
+<br>
+
+    <hr>
+</body>
+</html>
