@@ -38,7 +38,7 @@ if(isset($_SESSION['usuario']))
                                          <div class="col-lg-6">
                                           <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
-                                              <span class="input-group-text" id="basic-addon1">Categotria</span>
+                                              <span class="input-group-text" id="basic-addon1">Cliente</span>
                                             </div>
                                             <input id="txtcliente" name="txtcliente" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
                                           </div>
@@ -106,7 +106,7 @@ if(isset($_SESSION['usuario']))
                     <div class="row">
                                 <div class="col-xl-12">
                                         <div class="breadcrumb-holder">
-                                                <h1 class="main-title float-left">Consultar Ventas</h1>
+                                                <h1 class="main-title float-left">Ventas</h1>
                                                 <div class="clearfix">
                                                 
                                                 </div>
@@ -114,45 +114,24 @@ if(isset($_SESSION['usuario']))
                                 </div>
                     </div>
                     <!-- end row -->
-                    <form action="consultar_ventas.php" method="post">
-                    <div class="row">
-                       <div class="col-lg-1"></div>
-                        <div class="col-lg-3">
-                            <input type="date"  class="form-control" name="txtfecha1" required/>
-                        </div>
-                        <div class="col-lg-3">
-                            <input type="date" class="form-control" name="txtfecha2" required/>
-                        </div>
-                        <div class="col-lg-4">
-                            <input type="submit" value="Buscar" class="btn btn-primary">
-                        </div>
-                        <div class="col-lg-1"></div>
-                    </div>
-                    <hr>
-                    </form>
                     <div class="row">
                        <!-- Button trigger modal -->
 
                        
-
-                                                                                            
-                        <div class="col-lg-12">
-
-
-<?php
-if(isset($_POST['txtfecha1']) and isset($_POST['txtfecha2']))
-{
+            <?php
         require_once '../clases/Conexion.php';
         require_once '../clases/Venta.php';
         $obj = new Venta();
-        $result = $obj->consultar_venta($_POST['txtfecha1'],$_POST['txtfecha2']);
-?>
-
-   <table id="dtventas" class="table table-bordered table-hover table-condensed">
+        $result = $obj->mostrar();
+        
+        ?>
+                                                                                            
+                        <div class="col-lg-12">
+<table id="dtventas" class="table table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Categoria</td>
+                            <td>Cliente</td>
                             <td>Fecha</td>
                             <td>Tipo</td>
                             <td>Numero</td>
@@ -160,14 +139,16 @@ if(isset($_POST['txtfecha1']) and isset($_POST['txtfecha2']))
 
                             <!--<td>Fecha Sepelio</td>-->
                             <td style="width:15px"></td>
+                            <td style="width:15px"></td>
                         </tr>
                     </thead>
                     <tbody>
+
 <?php
+
 	while($fila=mysqli_fetch_row($result))
 	{
  ?>
-
     <tr>
 		<td><?php echo $fila[0] ?></td>
 		<td><?php echo $fila[2] ?></td>
@@ -184,12 +165,18 @@ if(isset($_POST['txtfecha1']) and isset($_POST['txtfecha2']))
               
             
         </td>
+        <td>
+
+                    <a href="#" class="btn btn-success"  onclick="marcar('<?php echo $fila[0] ?>')">
+                        <span class="fa fa-check-circle" role="button" data-toggle="tooltip" data-placement="top" title="Marcar Venta"></span> 
+                        Marcar como leida
+                    </a>
+              
+            
+        </td>
 	</tr>
 	<?php
-} 
-                        }
-                        else{
-                        }?>
+} ?>
 
                     </tbody>
 </table>
@@ -257,15 +244,25 @@ else {
       });
     
     }
+    function marcar(id)
+    {
+                    alertify.confirm('Venta', '¿Esta seguro que desea marcar esta venta?', function()
+                {
+                        $.ajax({
+                                type:"POST",
+                                url : "../procesos/ventas/marcar.php",
+                                data : "id_venta="+id
+                            }).done(function(msg) {
+                                alertify.success("Venta Marcada Correctamente");
+                                location.reload();
+                            });
+                }
+                , function(){
+                
+                });
+    }
 
-$(document).ready(function(){
-$('#dtventas').dataTable({
-        "ordering": false,
-        "info":     false
-});    
-});
-  
-    
+
   
 </script>
 
