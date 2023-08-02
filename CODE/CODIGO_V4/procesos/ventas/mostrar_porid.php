@@ -5,3 +5,4 @@ $obj = new Venta();
 $id = $_POST['id_venta'];
 echo json_encode($obj->mostrar_porid($id), JSON_UNESCAPED_UNICODE);
 ?>
+

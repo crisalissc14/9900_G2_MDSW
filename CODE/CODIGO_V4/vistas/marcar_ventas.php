@@ -38,7 +38,7 @@ if(isset($_SESSION['usuario']))
                                          <div class="col-lg-6">
                                           <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
-                                              <span class="input-group-text" id="basic-addon1">Cliente</span>
+                                              <span class="input-group-text" id="basic-addon1">Categoria</span>
                                             </div>
                                             <input id="txtcliente" name="txtcliente" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
                                           </div>
@@ -131,7 +131,7 @@ if(isset($_SESSION['usuario']))
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Cliente</td>
+                            <td>Categoria</td>
                             <td>Fecha</td>
                             <td>Tipo</td>
                             <td>Numero</td>
@@ -266,4 +266,7 @@ else {
   
 </script>
 
+<div class="text-right mb-2">
+    <a href="fpdf/PruebaV.php" target="_blank" class="btn btn-succes"><i class="fas fa-file-pdf"></i>Generar reporte</a> 
+</div>
 

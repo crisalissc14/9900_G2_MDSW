@@ -95,7 +95,7 @@ if(isset($_SESSION['usuario']))
        <form id="frmproductoa">
         <div class="row">
             <label>Stock (*)</label>
-            <input type="number" class="form-control" id="txtstocka" name="txtstocka">
+            <input type="number" class="form-control" id="txtstock" name="txtstock" onblur="validarStock()">
             </form>
         </div>
         </div>
@@ -266,6 +266,8 @@ $(document).ready(function(){
     $('#txtcategoriae').select2({
         dropdownParent: $("#exampleModal2 .modal-content")
     });
+
+    
     
     var table = $('#myTable').DataTable({
         "ajax":{
@@ -509,5 +511,4 @@ $(document).on('click', '.accionesTabla', function() {
     });
 });
 </script>
-
 

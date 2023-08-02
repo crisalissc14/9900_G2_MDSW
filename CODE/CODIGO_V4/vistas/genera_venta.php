@@ -33,9 +33,7 @@ if(isset($_SESSION['usuario']))
                         <div class="col-lg-3">
                         <label>Tipo</label>
                         <select name="txttipo" id="txttipo" class="form-control">
-                            <option id="boleta">Boleta</option>
                             <option id="factura">Factura</option>
-                            <option id="orden">Orden de Compra</option>
                         </select>
                         </div>
                         <div class="col-lg-2">

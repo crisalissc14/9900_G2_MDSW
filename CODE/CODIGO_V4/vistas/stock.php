@@ -20,7 +20,7 @@ if(isset($_SESSION['usuario']))
         <form id="frmproductoe">
           <div class="row">
             <label>Stock (*)</label>
-            <input type="number" class="form-control" id="txtstock" name="txtstock" onkeydown="return event.keyCode !== 69 && event.keyCode !== 190" step="1">
+            <input type="number" class="form-control" id="txtstock" name="txtstock" onkeydown="validarStock(event)" oninput="validarStockInput()" step="1">
           </div>
         </form>
       </div>
@@ -81,6 +81,26 @@ else {
 ?>
 
 <script>
+function validarStock(event) {
+  var stockInput = document.getElementById("txtstock");
+  var stockValue = parseFloat(stockInput.value);
+
+  if (!Number.isInteger(stockValue) || stockValue < 0) {
+    event.preventDefault();
+  }
+}
+
+function validarStockInput() {
+  var stockInput = document.getElementById("txtstock");
+  var stockValue = parseFloat(stockInput.value);
+
+  if (Number.isInteger(stockValue) && stockValue >= 0) {
+    stockInput.setCustomValidity("");
+  } else {
+    stockInput.setCustomValidity("Ingrese un número entero no negativo.");
+  }
+}
+
 $(document).ready(function(){
   $('#js-example-basic-single').select2();
 
@@ -121,30 +141,26 @@ $(document).ready(function(){
         $('#btneditar').unbind().click(function(){
           var vacios = validarFormVacio('frmproductoe');
 
-          if(vacios <= 0) {
+          if(vacios <= 0 && $("#txtstock")[0].checkValidity()) {
             var noma = $("#txtstock").val();
-            if (Number.isInteger(parseFloat(noma))) {
-              var oka = {
-                "txtstock" : noma , "id_producto" : id
-              };
+            var oka = {
+              "txtstock" : noma , "id_producto" : id
+            };
 
-              $.ajax({
-                method : "POST",
-                url : "../procesos/productos/stock.php",
-                data : oka
-              }).done(function(msg) {
-                if (msg == 1) {
-                  alertify.success("Stock Agregado Correctamente!");
-                  table.ajax.reload();
-                } else if (msg == "n") {
-                  alertify.error("Ingrese un número válido");
-                } else {
-                  alertify.error("No se pudo añadir");
-                }
-              });
-            } else {
-              alertify.error("Ingrese un número entero válido");
-            }
+            $.ajax({
+              method : "POST",
+              url : "../procesos/productos/stock.php",
+              data : oka
+            }).done(function(msg) {
+              if (msg == 1) {
+                alertify.success("Stock Agregado Correctamente!");
+                table.ajax.reload();
+              } else if (msg == "n") {
+                alertify.error("Ingrese un número válido");
+              } else {
+                alertify.error("No se pudo añadir");
+              }
+            });
           } else {
             alertify.error("Complete los datos");
           }
@@ -154,6 +170,7 @@ $(document).ready(function(){
   });
 });
 </script>
+
 
 
 

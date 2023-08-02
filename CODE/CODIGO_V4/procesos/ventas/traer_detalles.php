@@ -32,3 +32,6 @@ $re .="</table";
 
 echo $re;
 ?>
+<div class="text-right mb-2">
+    <a href="fpdf/PruebaV.php" target="_blank" class="btn btn-succes"><i class="fas fa-file-pdf"></i>Generar reporte</a> 
+</div>

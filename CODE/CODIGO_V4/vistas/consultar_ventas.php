@@ -38,7 +38,7 @@ if(isset($_SESSION['usuario']))
                                          <div class="col-lg-6">
                                           <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
-                                              <span class="input-group-text" id="basic-addon1">Categotria</span>
+                                              <span class="input-group-text" id="basic-addon1">Categoria</span>
                                             </div>
                                             <input id="txtcliente" name="txtcliente" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
                                           </div>
@@ -152,7 +152,7 @@ if(isset($_POST['txtfecha1']) and isset($_POST['txtfecha2']))
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Categoria</td>
+                            <td>Cliente</td>
                             <td>Fecha</td>
                             <td>Tipo</td>
                             <td>Numero</td>
@@ -266,7 +266,5 @@ $('#dtventas').dataTable({
 });
   
     
-  
+
 </script>
-
-
